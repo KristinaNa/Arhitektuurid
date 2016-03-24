@@ -20,7 +20,7 @@ import model.Radio;
 public class RadioController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static String INSERT_OR_EDIT = "/user.jsp";
-    private static String LIST_USER = "/listRadio.jsp";
+    private static String LIST_RADIO = "/listRadio.jsp";
     private RadioDao dao;
 
     public RadioController() {
@@ -49,7 +49,7 @@ public class RadioController extends HttpServlet {
             forward = INSERT_OR_EDIT;
         }
 */
-        forward = LIST_USER;
+        forward = LIST_RADIO;
         request.setAttribute("radios", dao.getAllRadios());
 
         RequestDispatcher view = request.getRequestDispatcher(forward);

@@ -79,6 +79,7 @@ public class RadioDao {
               //  radio.setId(rs.getInt("id"));
                 radio.setName(rs.getString("name"));
                 radio.setSequence(rs.getInt("sequence"));
+                radio.setDescription(rs.getString("description"));
                 radios.add(radio);
             }
         } catch (SQLException e) {
