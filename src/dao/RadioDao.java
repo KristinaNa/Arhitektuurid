@@ -22,53 +22,50 @@ public class RadioDao {
         connection = DbUtil.getConnection();
     }
 
- /*   public void addRadio(Radio radio) {
+   public void addRadio(Radio radio) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into radios(firstname,lastname,dob,email) values (?, ?, ?, ? )");
+                    .prepareStatement("insert into radio(name,sequence,description) values (?, ?, ?)");
             // Parameters start with 1
-            preparedStatement.setString(1, radio.getFirstName());
-            preparedStatement.setString(2, radio.getLastName());
-            preparedStatement.setDate(3, new java.sql.Date(radio.getDob().getTime()));
-            preparedStatement.setString(4, radio.getEmail());
+            preparedStatement.setString(1, radio.getName());
+            preparedStatement.setInt(2, radio.getSequence());
+            preparedStatement.setString(3, radio.getDescription());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    /*
+        public void deleteRadio(int radioId) {
+            try {
+                PreparedStatement preparedStatement = connection
+                        .prepareStatement("delete from radios where radioid=?");
+                // Parameters start with 1
+                preparedStatement.setInt(1, radioId);
+                preparedStatement.executeUpdate();
 
-    public void deleteRadio(int radioId) {
-        try {
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("delete from radios where radioid=?");
-            // Parameters start with 1
-            preparedStatement.setInt(1, radioId);
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-    }
+ */
+        public void updateRadio(Radio radio) {
+            try {
+                PreparedStatement preparedStatement = connection
+                        .prepareStatement("update radio set name=?, sequence=?, description=?" + "where radio=?");
+                // Parameters start with 1
+                preparedStatement.setString(1, radio.getName());
+                preparedStatement.setInt(2, radio.getSequence());
+                preparedStatement.setString(3, radio.getDescription());
+                preparedStatement.setInt(4, radio.getId());
+                preparedStatement.executeUpdate();
 
-    public void updateRadio(Radio radio) {
-        try {
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("update radios set firstname=?, lastname=?, dob=?, email=?" +
-                            "where radioid=?");
-            // Parameters start with 1
-            preparedStatement.setString(1, radio.getFirstName());
-            preparedStatement.setString(2, radio.getLastName());
-            preparedStatement.setDate(3, new java.sql.Date(radio.getDob().getTime()));
-            preparedStatement.setString(4, radio.getEmail());
-            preparedStatement.setInt(5, radio.getRadioid());
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-    }
-*/
+
     public List<Radio> getAllRadios() {
         List<Radio> radios = new ArrayList<Radio>();
         try {
@@ -76,7 +73,7 @@ public class RadioDao {
             ResultSet rs = statement.executeQuery("select * from radio");
             while (rs.next()) {
                 Radio radio = new Radio();
-              //  radio.setId(rs.getInt("id"));
+                radio.setId(rs.getInt("radio"));
                 radio.setName(rs.getString("name"));
                 radio.setSequence(rs.getInt("sequence"));
                 radio.setDescription(rs.getString("description"));
@@ -88,21 +85,20 @@ public class RadioDao {
 
         return radios;
     }
-/*
+
     public Radio getRadioById(int radioId) {
         Radio radio = new Radio();
         try {
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("select * from radios where radioid=?");
+                    prepareStatement("select * from radio where radio=?");
             preparedStatement.setInt(1, radioId);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-                radio.setRadioid(rs.getInt("radioid"));
-                radio.setFirstName(rs.getString("firstname"));
-                radio.setLastName(rs.getString("lastname"));
-                radio.setDob(rs.getDate("dob"));
-                radio.setEmail(rs.getString("email"));
+                radio.setId(rs.getInt("radio"));
+                radio.setName(rs.getString("name"));
+                radio.setSequence(rs.getInt("sequence"));
+                radio.setDescription(rs.getString("description"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -110,5 +106,5 @@ public class RadioDao {
 
         return radio;
     }
-    */
+
 }

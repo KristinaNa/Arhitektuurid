@@ -19,7 +19,7 @@ import model.Radio;
 
 public class RadioController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static String INSERT_OR_EDIT = "/user.jsp";
+    private static String INSERT_OR_EDIT = "/radio.jsp";
     private static String LIST_RADIO = "/listRadio.jsp";
     private RadioDao dao;
 
@@ -49,38 +49,46 @@ public class RadioController extends HttpServlet {
             forward = INSERT_OR_EDIT;
         }
 */
-        forward = LIST_RADIO;
-        request.setAttribute("radios", dao.getAllRadios());
+        if(action.equalsIgnoreCase("edit")){
+            forward = INSERT_OR_EDIT;
+            int radioId = Integer.parseInt(request.getParameter("radio"));
+            Radio radio = dao.getRadioById(radioId);
+            request.setAttribute("radio", radio);
+        }else {
+            forward = LIST_RADIO;
+            request.setAttribute("radios", dao.getAllRadios());
+        }
 
         RequestDispatcher view = request.getRequestDispatcher(forward);
         view.forward(request, response);
     }
 
-/*
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = new User();
-        user.setFirstName(request.getParameter("firstName"));
-        user.setLastName(request.getParameter("lastName"));
-        try {
+        Radio radio = new Radio();
+        radio.setName(request.getParameter("name"));
+        radio.setDescription(request.getParameter("Description"));
+
+       /* try {
             Date dob = new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("dob"));
-            user.setDob(dob);
+            radio.setDob(dob);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        user.setEmail(request.getParameter("email"));
-        String userid = request.getParameter("userid");
+        */
+
+        String userid = request.getParameter("radio");
+
         if(userid == null || userid.isEmpty())
         {
-            dao.addUser(user);
+            dao.addRadio(radio);
         }
         else
         {
-            user.setUserid(Integer.parseInt(userid));
-            dao.updateUser(user);
+            radio.setId(Integer.parseInt(userid));
+            dao.updateRadio(radio);
         }
-        RequestDispatcher view = request.getRequestDispatcher(LIST_USER);
-        request.setAttribute("users", dao.getAllUsers());
+        RequestDispatcher view = request.getRequestDispatcher(LIST_RADIO);
+        request.setAttribute("radios", dao.getAllRadios());
         view.forward(request, response);
     }
-    */
 }

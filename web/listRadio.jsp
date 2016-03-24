@@ -20,15 +20,22 @@
 <table border=1>
     <thead>
     <tr>
-        <th>First Name</th>
-
+        <th>Id</th>
+        <th>Station Name</th>
+        <th>FM</th>
+        <th>Description</th>
+        <td></td>
     </tr>
     </thead>
     <tbody>
+    Radio stations list:<br/>
     <c:forEach items="${radios}" var="radio">
         <tr>
+            <td><c:out value="${radio.id}" /></td>
             <td><c:out value="${radio.name}" /></td>
             <td><c:out value="${radio.sequence}" /></td>
+            <td><c:out value="${radio.description}" /></td>
+            <td><a href="RadioController?action=edit&radio=<c:out value="${radio.id}"/>">Update</a></td>
         </tr>
     </c:forEach>
     </tbody>
