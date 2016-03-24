@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1429747924">
+    <data-source source="LOCAL" name="PostgreSQL - radio@localhost" uuid="5f98db77-5817-469c-b367-36124b5e0c3f">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/radio</jdbc-url>
+    </data-source>
+  </component>
+</project>
