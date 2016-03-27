@@ -53,13 +53,14 @@ public class RadioDao {
         public void updateRadio(Radio radio) {
             try {
                 PreparedStatement preparedStatement = connection
-                        .prepareStatement("update radio set name=?, sequence=?, description=?" + "where radio=?");
+                        .prepareStatement("update radio set name=?, sequence=?, description=?" + " where radio=?");
                 // Parameters start with 1
                 preparedStatement.setString(1, radio.getName());
                 preparedStatement.setInt(2, radio.getSequence());
                 preparedStatement.setString(3, radio.getDescription());
                 preparedStatement.setInt(4, radio.getId());
                 preparedStatement.executeUpdate();
+                System.out.println(preparedStatement);
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -70,7 +71,7 @@ public class RadioDao {
         List<Radio> radios = new ArrayList<Radio>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from radio");
+            ResultSet rs = statement.executeQuery("select * from radio order by radio");
             while (rs.next()) {
                 Radio radio = new Radio();
                 radio.setId(rs.getInt("radio"));

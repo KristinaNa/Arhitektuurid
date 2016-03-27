@@ -12,10 +12,6 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-    <link type="text/css"
-          href="css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
-    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
     <title>Muuda raadio</title>
     <style>
         input{
@@ -31,7 +27,7 @@
         <table>
             <tr>
                 <td>ID: </td>
-                <td><input type="text" readonly="readonly" name="radioid" value="<c:out value="${radio.id}" />" /> <br/></td>
+                <td><input type="text" readonly="readonly" name="radio" value="<c:out value="${radio.id}" />" /> <br/></td>
             </tr>
             <tr>
                 <td>Station name: </td>
@@ -39,7 +35,7 @@
             </tr>
             <tr>
                 <td>Sequence: </td>
-                <td><input type="text" name="fm" value="<c:out value="${radio.sequence}" />" /> <br/></td>
+                <td><input type="text" name="sequence" value="<c:out value="${radio.sequence}" />" /> <br/></td>
             </tr>
             <tr>
                 <td>Description: </td>

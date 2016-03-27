@@ -1,12 +1,13 @@
 package model;
 public class Radio {
-    private int id ;
+    private int radio;
     private String name ;
     private String description ;
     private int sequence ;
 
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) { this.radio = id; }
+
     public void setName (String name) { this.name= name; }
     public void setSequence(int sequence)
     {
@@ -15,10 +16,11 @@ public class Radio {
     public void setDescription (String description) { this.description= description; }
 
 
-    public int getId()
-    {
-        return this.id ;
+    public int getId() {
+        System.out.print(this.radio);
+        return this.radio;
     }
+
     public String getName ()
     {
         return this.name ;

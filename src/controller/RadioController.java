@@ -65,8 +65,13 @@ public class RadioController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Radio radio = new Radio();
+        radio.setId(Integer.parseInt(request.getParameter("radio")));
         radio.setName(request.getParameter("name"));
-        radio.setDescription(request.getParameter("Description"));
+        radio.setDescription(request.getParameter("description"));
+        radio.setSequence(Integer.parseInt(request.getParameter("sequence")));
+
+        dao.updateRadio(radio);
+
 
        /* try {
             Date dob = new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("dob"));
@@ -74,19 +79,21 @@ public class RadioController extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        */
 
-        String userid = request.getParameter("radio");
+        String id = request.getParameter("radio");
 
-        if(userid == null || userid.isEmpty())
+        if(id == null || id.isEmpty())
         {
             dao.addRadio(radio);
         }
         else
         {
-            radio.setId(Integer.parseInt(userid));
+            radio.setId(Integer.parseInt(id));
             dao.updateRadio(radio);
         }
+*/
+
+
         RequestDispatcher view = request.getRequestDispatcher(LIST_RADIO);
         request.setAttribute("radios", dao.getAllRadios());
         view.forward(request, response);
