@@ -12,7 +12,7 @@
   </head>
   <body>
     <input type="text" value="Hello"/>
-    <jsp:forward page="/RadioController?action=listRadio" />
+    <jsp:forward page="/radio/s" />
 
   </body>
 </html>

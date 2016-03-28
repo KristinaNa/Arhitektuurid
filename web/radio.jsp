@@ -23,7 +23,15 @@
     </style>
 </head>
 <body>
-    <form method="POST" action='RadioController' name="frmAddRadio">
+<a href='/radio/s'>servlet</a> | <a href='/log.txt'>log.txt</a> <br>
+
+<c:forEach items="${radioerrors}" var="error">
+    ${error.key} - ${error.value}<br>
+</c:forEach>
+
+<c:if test="${radioerrors.get('Viga') == null}">
+
+    <form method="POST" action='/radio/s' name="frmAddRadio">
         <table>
             <tr>
                 <td>ID: </td>
@@ -45,7 +53,7 @@
         <input class="submit" type="submit" value="Submit" />
     </form>
 
-
+</c:if>
 
 
 </body>

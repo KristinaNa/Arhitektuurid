@@ -17,6 +17,8 @@
         <title>Show All Users</title>
     </head>
     <body>
+    <a href='/radio/s'>servlet</a> | <a href='/log.txt'>log.txt</a> <br>
+
     <table border=1>
         <thead>
         <tr>
@@ -36,8 +38,8 @@
                 <td><c:out value="${radio.name}" /></td>
                 <td><c:out value="${radio.sequence}" /></td>
                 <td><c:out value="${radio.description}" /></td>
-                <td><a href="RadioController?action=edit&radio=<c:out value="${radio.id}"/>">muuda</a></td>
-                <td><a href="RadioController?action=data&radio=<c:out value="${radio.id}"/>">kirjeldus</a></td>
+                <td><a href="/radio/s?action=edit&id=<c:out value="${radio.id}"/>">muuda</a></td>
+                <td><a href="/radio/radioservice?action=data&id=<c:out value="${radio.id}"/>">kirjeldus</a></td>
             </tr>
         </c:forEach>
         </tbody>

@@ -11,12 +11,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Radio;
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import util.DbUtil;
 import org.json.JSONArray;
 
 
 public class RadioDao {
+    private static Logger logger = Logger.getLogger(RadioDao.class);
 
     private Connection connection;
 
@@ -24,7 +26,7 @@ public class RadioDao {
         connection = DbUtil.getConnection();
     }
 
-   public void addRadio(Radio radio) {
+    public void addRadio(Radio radio) {
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("insert into radio(name,sequence,description) values (?, ?, ?)");
@@ -38,36 +40,23 @@ public class RadioDao {
             e.printStackTrace();
         }
     }
-    /*
-        public void deleteRadio(int radioId) {
-            try {
-                PreparedStatement preparedStatement = connection
-                        .prepareStatement("delete from radios where radioid=?");
-                // Parameters start with 1
-                preparedStatement.setInt(1, radioId);
-                preparedStatement.executeUpdate();
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    public void updateRadio(Radio radio) {
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("update radio set name=?, sequence=?, description=?" + " where radio=?");
+            // Parameters start with 1
+            preparedStatement.setString(1, radio.getName());
+            preparedStatement.setInt(2, radio.getSequence());
+            preparedStatement.setString(3, radio.getDescription());
+            preparedStatement.setInt(4, radio.getId());
+            preparedStatement.executeUpdate();
+            System.out.println(preparedStatement);
+            logger.info("Kirje muutmine");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
- */
-        public void updateRadio(Radio radio) {
-            try {
-                PreparedStatement preparedStatement = connection
-                        .prepareStatement("update radio set name=?, sequence=?, description=?" + " where radio=?");
-                // Parameters start with 1
-                preparedStatement.setString(1, radio.getName());
-                preparedStatement.setInt(2, radio.getSequence());
-                preparedStatement.setString(3, radio.getDescription());
-                preparedStatement.setInt(4, radio.getId());
-                preparedStatement.executeUpdate();
-                System.out.println(preparedStatement);
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+    }
 
     public List<Radio> getAllRadios() {
         List<Radio> radios = new ArrayList<Radio>();
