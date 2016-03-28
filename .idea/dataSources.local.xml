@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="PostgreSQL - radio@localhost" uuid="5f98db77-5817-469c-b367-36124b5e0c3f">
+      <secret-storage>master_key</secret-storage>
+      <user-name>postgres</user-name>
+      <schema-pattern>radio.pg_catalog radio.public</schema-pattern>
+      <default-schemas>radio.public</default-schemas>
+    </data-source>
+  </component>
+</project>
