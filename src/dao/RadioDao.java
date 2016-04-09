@@ -26,18 +26,28 @@ public class RadioDao {
         connection = DbUtil.getConnection();
     }
 
-    public void addRadio(Radio radio) {
+    public int addRadio(Radio radio) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into radio(name,sequence,description) values (?, ?, ?)");
+                    .prepareStatement("insert into radio(name,sequence,description) values (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             // Parameters start with 1
             preparedStatement.setString(1, radio.getName());
             preparedStatement.setInt(2, radio.getSequence());
             preparedStatement.setString(3, radio.getDescription());
             preparedStatement.executeUpdate();
 
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                }
+                else {
+                    return -1;
+                }
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
+            return -1;
         }
     }
 
@@ -62,7 +72,7 @@ public class RadioDao {
         List<Radio> radios = new ArrayList<Radio>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from radio order by radio");
+            ResultSet rs = statement.executeQuery("select * from radio order by radio asc");
             while (rs.next()) {
                 Radio radio = new Radio();
                 radio.setId(rs.getInt("radio"));

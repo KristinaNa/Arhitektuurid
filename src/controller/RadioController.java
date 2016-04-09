@@ -4,9 +4,6 @@ package controller;
  * Created by Kristina on 24/03/2016.
  */
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,15 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.RadioDao;
 import model.Radio;
-import org.json.JSONArray;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.simple.JSONObject;
-
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import util.RadioValidator;
 
 @WebServlet(
@@ -40,7 +32,7 @@ public class RadioController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static String INSERT_OR_EDIT = "/radio.jsp";
     private static String LIST_RADIO = "/listRadio.jsp";
-    private static String GET_JSON = "/json.jsp";
+    //private static String GET_JSON = "/json.jsp";
 
     private RadioDao dao;
 

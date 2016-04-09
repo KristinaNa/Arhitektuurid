@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-        <title>Show All Users</title>
+        <title>Show All Radios</title>
     </head>
     <body>
     <a href='/radio/s'>servlet</a> | <a href='/log.txt'>log.txt</a> <br>
